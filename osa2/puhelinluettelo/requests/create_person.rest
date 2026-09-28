@@ -1,0 +1,17 @@
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name": "jaakko mikkola",
+    "number": "001001001"
+}
+
+# {
+#     "name": "jarkko mikkola",
+#     "number": ""
+# }
+
+# {
+#     "name": "",
+#     "number": "123000123"
+# }
