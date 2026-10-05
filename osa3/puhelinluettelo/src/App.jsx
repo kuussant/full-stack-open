@@ -86,6 +86,20 @@ const App = () => {
   const handleFilter = (event) => {
     setFilter(event.target.value)
   }
+
+  const doAlert = (message) => {
+    setErrorMessage(message)
+    setTimeout(() => {
+      setErrorMessage(null)
+    }, 5000)
+  }
+
+  const doNotification = (message) => {
+    setNotification(message)
+    setTimeout(() => {
+      setNotification(null)
+    }, 5000)
+  }
   
   const handleNewPerson = (event) => {
     event.preventDefault()
@@ -108,10 +122,11 @@ const App = () => {
             persons.map(person => person.id === existingPerson.id ? updatedNumber : person)
           ))
           .catch(error => {
-            setErrorMessage(`Information of ${existingPerson.name} has already been removed from server`)
-            setTimeout(() => {
-              setErrorMessage(null)
-            }, 5000)
+            // setErrorMessage(`Information of ${existingPerson.name} has already been removed from server`)
+            // setTimeout(() => {
+            //   setErrorMessage(null)
+            // }, 5000)
+            doAlert(`Information of ${existingPerson.name} has already been removed from server`)
             setPersons(persons.filter(p => p.id !== existingPerson.id))
           })
         
@@ -131,21 +146,15 @@ const App = () => {
       .then(returnedPerson => {
         setPersons(persons.concat(returnedPerson))
 
-        setNotification(`Added ${newName}`)
-
-        setTimeout(() => {
-          setNotification(null)  
-        }, 5000)
+        doNotification(`Added ${newName}`)
 
         setNewName('')
         setNewNumber('')
       })
       .catch(error => {
         console.log(error.response.data)
-        setErrorMessage(error.response.data.error)
-        setTimeout(() => {
-          setErrorMessage(null)
-        }, 5000)
+
+        doAlert(error.response.data.error)
       })
   }
 

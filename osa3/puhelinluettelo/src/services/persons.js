@@ -20,8 +20,8 @@ const deletePerson = (id) => {
   return axios.delete(`${baseUrl}/${id}`)
 }
 
-const test = request => {
-  return request.then(response => response.data)
-}
+// const test = request => {
+//   return request.then(response => response.data)
+// }
 
 export default { getAll, create, update, deletePerson }
